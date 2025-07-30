@@ -38,14 +38,40 @@ code {
 
 /* Custom components */
 @layer components {
+  /* Dark Theme Variables */
+  .dark {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --accent-primary: #667eea;
+    --accent-secondary: #764ba2;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.125);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Light Theme Variables */
+  .light {
+    --bg-primary: #f9fafb;
+    --bg-secondary: #e5e7eb;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --accent-primary: #667eea;
+    --accent-secondary: #764ba2;
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+  }
+
   .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
   }
   
   .glass-effect {
     backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
   }
   
   .card-hover {
@@ -54,6 +80,6 @@ code {
   
   .card-hover:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 25px -5px var(--shadow-color), 0 10px 10px -5px var(--shadow-color);
   }
 }

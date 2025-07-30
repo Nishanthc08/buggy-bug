@@ -104,6 +104,9 @@ const Week2 = () => {
             <Link to="/week1" className="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded-lg transition-colors">
               <HiArrowLeft className="mr-2" /> Week 1
             </Link>
+            <Link to="/quiz/week2" className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+              Take Quiz
+            </Link>
             <Link to="/week3" className="flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
               Week 3 <HiArrowRight className="ml-2" />
             </Link>

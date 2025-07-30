@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { HiHome, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import { HiHome, HiArrowLeft, HiArrowRight, HiCheck } from 'react-icons/hi';
+import { useProgress } from '../contexts/ProgressContext';
+import WeekProgress from '../components/WeekProgress';
+import withLoading from '../components/withLoading';
+import WeekPageSkeleton from '../components/WeekPageSkeleton';
 
 const Week1 = () => {
+  const { progress, toggleDayComplete } = useProgress();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -101,6 +107,9 @@ const Week1 = () => {
             Home
           </Link>
           <div className="flex space-x-4">
+            <Link to="/quiz/week1" className="flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+              Take Quiz
+            </Link>
             <Link to="/week2" className="flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
               Week 2 <HiArrowRight className="ml-2" />
             </Link>
@@ -125,6 +134,16 @@ const Week1 = () => {
         </motion.p>
       </motion.div>
 
+      {/* Week Progress */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <WeekProgress weekId="week1" />
+      </motion.div>
+
       {/* Days Content */}
       <motion.div 
         variants={containerVariants}
@@ -146,9 +165,21 @@ const Week1 = () => {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-purple-400 mb-4">
-                    Day {dayData.day}: {dayData.title}
-                  </h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-bold text-purple-400">
+                      Day {dayData.day}: {dayData.title}
+                    </h3>
+                    <button
+                      onClick={() => toggleDayComplete('week1', `day${dayData.day}`)}
+                      className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all duration-200 ${
+                        progress.week1[`day${dayData.day}`]
+                          ? 'bg-green-500 border-green-500 text-white'
+                          : 'border-gray-400 hover:border-purple-400'
+                      }`}
+                    >
+                      {progress.week1[`day${dayData.day}`] && <HiCheck className="w-4 h-4" />}
+                    </button>
+                  </div>
                   <ul className="space-y-2">
                     {dayData.topics.map((topic, topicIndex) => (
                       <li key={topicIndex} className="flex items-start">
@@ -189,4 +220,5 @@ const Week1 = () => {
   );
 };
 
-export default Week1;
+// Export the Week1 component with loading functionality
+export default withLoading(Week1, WeekPageSkeleton, 800);

@@ -1,0 +1,57 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { HiHome } from 'react-icons/hi';
+import { reflectedXssTutorial } from '../data/interactiveTutorialsData';
+import InteractiveTutorial from '../components/InteractiveTutorial';
+import withLoading from '../components/withLoading';
+
+const InteractiveTutorialPage = () => {
+  return (
+    <div className="pt-24 text-white min-h-screen">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+      >
+        <div className="flex items-center justify-between mb-8">
+          <Link to="/" className="flex items-center text-gray-300 hover:text-white transition-colors">
+            <HiHome className="mr-2" />
+            Home
+          </Link>
+        </div>
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
+          Interactive Tutorial: <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">{reflectedXssTutorial.title}</span>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-lg text-gray-300 max-w-3xl"
+        >
+          {reflectedXssTutorial.description}
+        </motion.p>
+      </motion.div>
+
+      {/* Tutorial Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20"
+      >
+        <InteractiveTutorial tutorial={reflectedXssTutorial} />
+      </motion.div>
+    </div>
+  );
+};
+
+export default withLoading(InteractiveTutorialPage, null, 1000);
+
