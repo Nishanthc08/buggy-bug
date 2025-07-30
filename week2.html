@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - BuggyBug</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Week 2: Common Vulnerabilities Deep Dive</h1>
+    </header>
+    <main>
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> &gt; <span>Week 2</span>
+        </nav>
+
+        <div class="day-card">
+            <h3>Day 1: Cross-Site Scripting (XSS) Deep Dive</h3>
+            <ul>
+                <li><strong>XSS Fundamentals:</strong> Understand what XSS is and why it's dangerous. Learn the three main types: Reflected, Stored/Persistent, and DOM-based.</li>
+                <li><strong>Reflected XSS:</strong> Understand how it works, identify vulnerable parameters, and practice with basic payloads like <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>.</li>
+                <li><strong>XSS Contexts:</strong> Learn about different contexts where XSS can occur (HTML, attribute, JavaScript, CSS).</li>
+                <li><strong>Practice:</strong> Complete XSS challenges in PortSwigger Web Security Academy and OWASP Juice Shop.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 2: Advanced XSS & Filter Bypass</h3>
+            <ul>
+                <li><strong>Stored XSS:</strong> Learn why it's more dangerous and practice finding it in comments, profiles, and forms.</li>
+                <li><strong>DOM-based XSS:</strong> Understand JavaScript sinks and sources and practice identifying vulnerable code.</li>
+                <li><strong>Filter Bypass Techniques:</strong> Study encoding (HTML, URL, JavaScript) and practice with payloads like <code>&lt;img src=x onerror=alert('XSS')&gt;</code> and <code>&lt;svg onload=alert('XSS')&gt;</code>.</li>
+                <li><strong>Practice:</strong> Complete advanced XSS labs in PortSwigger.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 3: SQL Injection Fundamentals</h3>
+            <ul>
+                <li><strong>SQLi Basics:</strong> Understand different SQLi types (error-based, union-based, boolean-based, time-based) and the classic <code>' OR '1'='1</code> payload.</li>
+                <li><strong>Error-based & Union-based SQLi:</strong> Practice extracting database information through error messages and using UNION statements.</li>
+                <li><strong>Database Enumeration:</strong> Learn to extract database, table, and column names.</li>
+                <li><strong>Practice:</strong> Complete SQLi labs in PortSwigger and OWASP Juice Shop.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 4: Advanced SQL Injection & Blind SQLi</h3>
+            <ul>
+                <li><strong>Blind SQL Injection:</strong> Understand boolean-based and time-based blind SQLi techniques.</li>
+                <li><strong>Data Extraction:</strong> Practice extracting data character by character using functions like <code>SUBSTRING()</code> and <code>ASCII()</code>.</li>
+                <li><strong>Time-based Techniques:</strong> Learn to use functions like <code>SLEEP()</code> and <code>WAITFOR DELAY</code>.</li>
+                <li><strong>SQLMap:</strong> Install and learn basic SQLMap commands for automated SQLi detection and exploitation.</li>
+                <li><strong>Practice:</strong> Complete blind SQLi labs and use SQLMap on vulnerable applications.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 5: CSRF & IDOR Vulnerabilities</h3>
+            <ul>
+                <li><strong>Cross-Site Request Forgery (CSRF):</strong> Understand how it works, the role of CSRF tokens, and different attack vectors. Practice creating PoCs.</li>
+                <li><strong>Insecure Direct Object References (IDOR):</strong> Learn to identify predictable object references and practice horizontal and vertical privilege escalation.</li>
+                <li><strong>Testing Techniques:</strong> Use Burp Suite Intruder for IDOR testing.</li>
+                <li><strong>Practice:</strong> Complete CSRF and IDOR labs in PortSwigger.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 6-7: Weekend Practice & Vulnerability Integration</h3>
+            <h4>Day 6: Advanced Practice</h4>
+            <ul>
+                <li><strong>Vulnerability Chaining:</strong> Learn to combine multiple vulnerabilities (e.g., CSRF + XSS) for greater impact.</li>
+                <li><strong>Real-world Practice:</strong> Try more complex challenges in OWASP Juice Shop, VulnHub, or HackTheBox.</li>
+                <li><strong>Bug Report Reading:</strong> Read 10-15 disclosed reports on HackerOne Hacktivity.</li>
+            </ul>
+            <h4>Day 7: Review & Preparation</h4>
+            <ul>
+                <li><strong>Week 2 Review:</strong> Create cheat sheets for XSS and SQLi payloads.</li>
+                <li><strong>Tool Mastery:</strong> Practice with Burp Suite Intruder and Comparer.</li>
+                <li><strong>Prepare for Week 3:</strong> Read about reconnaissance techniques.</li>
+            </ul>
+        </div>
+
+    </main>
+    <footer>
+        <p>Happy hunting! 🐛</p>
+    </footer>
+</body>
+</html>
+

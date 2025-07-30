@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - BuggyBug</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Week 3: Tools & Reconnaissance</h1>
+    </header>
+    <main>
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> &gt; <span>Week 3</span>
+        </nav>
+
+        <div class="day-card">
+            <h3>Day 1: Burp Suite Mastery</h3>
+            <ul>
+                <li><strong>Burp Suite Intruder:</strong> Learn the different attack types and use Intruder for fuzzing, rate limit testing, and brute force attacks.</li>
+                <li><strong>Burp Suite Comparer & Decoder:</strong> Learn to use Comparer to analyze differences in responses and practice with Decoder for encoding/decoding data.</li>
+                <li><strong>Burp Suite Extender:</strong> Browse the BApp Store and install popular extensions like Logger++, Autorize, and Flow.</li>
+                <li><strong>Practice:</strong> Re-do previous labs using Burp Suite to automate and speed up the process.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 2: Network Reconnaissance with Nmap</h3>
+            <ul>
+                <li><strong>Nmap Basics:</strong> Install nmap and learn basic syntax, host discovery, and different scan types (TCP SYN, TCP connect, UDP).</li>
+                <li><strong>Service Detection & NSE:</strong> Use flags for version detection (<code>-sV</code>) and default scripts (<code>-sC</code>). Learn about the Nmap Scripting Engine for vulnerability detection.</li>
+                <li><strong>Practice:</strong> Scan vulnerable VMs or Docker containers. <strong>Note:</strong> Only scan systems you own or have explicit permission to test.</li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 3: Web Directory & File Discovery</h3>
+            <ul>
+                <li><strong>Directory Brute Forcing:</strong> Install and learn tools like Gobuster, Dirb, and ffuf.</li>
+                <li><strong>Wordlist Management:</strong> Download and organize SecLists and learn to create custom wordlists.</li>
+                <li><strong>File Extension Discovery:</strong> Search for backup files (<code>.bak</code>, <code>.old</code>), config files (<code>.config</code>, <code>.xml</code>), and sensitive files (<code>.env</code>, <code>.git</code>).</li>
+                <li><strong>Practice Commands:</strong>
+                    <pre><code>gobuster dir -u http://target.com -w /path/to/wordlist
+dirb http://target.com
+ffuf -w wordlist.txt -u http://target.com/FUZZ</code></pre>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 4: Subdomain Enumeration & DNS Reconnaissance</h3>
+            <ul>
+                <li><strong>Subdomain Discovery:</strong> Install and learn tools like Sublist3r, Assetfinder, and Amass.</li>
+                <li><strong>DNS Enumeration:</strong> Use <code>dig</code>, <code>nslookup</code>, and DNSrecon for DNS queries and zone transfers.</li>
+                <li><strong>Certificate Transparency & Google Dorking:</strong> Use crt.sh and advanced Google search operators to find subdomains and sensitive information.</li>
+                <li><strong>Practice Commands:</strong>
+                    <pre><code>sublist3r -d target.com
+assetfinder target.com
+amass enum -d target.com</code></pre>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 5: Information Gathering & OSINT</h3>
+            <ul>
+                <li><strong>Email Harvesting & Tech Stack ID:</strong> Use theHarvester for email enumeration and Wappalyzer or Whatweb to identify web technologies.</li>
+                <li><strong>GitHub & Code Repository Recon:</strong> Search for exposed API keys and secrets using tools like GitDorker and TruffleHog.</li>
+                <li><strong>Shodan:</strong> Create a Shodan account and learn to find exposed services and devices.</li>
+                <li><strong>Practice Commands:</strong>
+                    <pre><code>theharvester -d target.com -b google
+whatweb target.com
+shodan search "target.com"</code></pre>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <h3>Day 6-7: Weekend Automation & Integration</h3>
+            <h4>Day 6: Reconnaissance Automation</h4>
+            <ul>
+                <li><strong>Bash Scripting:</strong> Learn basic bash scripting to combine multiple tools into a workflow.</li>
+                <li><strong>Tool Integration:</strong> Learn to pipe outputs between tools and create one-liners for common tasks.</li>
+                <li><strong>Reconnaissance Frameworks:</strong> Try ReconNG, OWASP Amass, and Nuclei.</li>
+            </ul>
+            <h4>Day 7: Comprehensive Practice</h4>
+            <ul>
+                <li><strong>End-to-End Recon:</strong> Pick a target and perform complete reconnaissance.</li>
+                <li><strong>Week 3 Review:</strong> Create a reconnaissance checklist and organize your tools and commands.</li>
+                <li><strong>Prepare for Week 4:</strong> Research bug bounty platforms and read about responsible disclosure.</li>
+            </ul>
+        </div>
+
+    </main>
+    <footer>
+        <p>Happy hunting! 🐛</p>
+    </footer>
+</body>
+</html>
+
