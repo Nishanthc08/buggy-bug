@@ -2,6 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiHome, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import InteractiveVulnerabilityDemos from '../components/InteractiveVulnerabilityDemos';
+import BugBountyReportAnalyzer from '../components/BugBountyReportAnalyzer';
+import CareerPathBuilder from '../components/CareerPathBuilder';
+import ResumeCvKeywords from '../components/ResumeCvKeywords';
 
 const Week4 = () => {
   const containerVariants = {
@@ -20,6 +24,17 @@ const Week4 = () => {
   const days = [
     {
       day: 1,
+      title: "Advanced Vulnerability Analysis",
+      topics: [
+        "Cross-Site Request Forgery (CSRF) and mitigation",
+        "Server-Side Request Forgery (SSRF) techniques",
+        "Insecure Direct Object References (IDOR)",
+        "Business logic flaws and race conditions",
+        "Advanced authentication bypasses"
+      ]
+    },
+    {
+      day: 2,
       title: "Bug Bounty Platforms & Program Selection",
       topics: [
         "Major platforms: HackerOne, Bugcrowd, Synack, Intigriti",
@@ -30,7 +45,7 @@ const Week4 = () => {
       ]
     },
     {
-      day: 2,
+      day: 3,
       title: "Writing Effective Bug Reports",
       topics: [
         "Bug report structure: title, summary, steps to reproduce, impact",
@@ -41,36 +56,25 @@ const Week4 = () => {
       ]
     },
     {
-      day: 3,
-      title: "First Bug Bounty Attempts",
-      topics: [
-        "Choosing 2-3 beginner-friendly programs",
-        "Applying reconnaissance techniques from Week 3",
-        "Testing for low-hanging fruit: misconfigurations, IDORs, XSS",
-        "Following a systematic testing methodology",
-        "Keeping detailed notes of testing process"
-      ]
-    },
-    {
       day: 4,
-      title: "Advanced Techniques & Persistence",
+      title: "Advanced Techniques & Automation",
       topics: [
-        "Business logic flaws and race conditions",
-        "API security: parameter pollution, rate limiting",
+        "API security testing and parameter pollution",
         "JavaScript analysis for hardcoded secrets",
         "Automated vulnerability detection with Nuclei",
-        "Joining bug bounty communities for knowledge sharing"
+        "Custom tooling and script development",
+        "Advanced reconnaissance techniques"
       ]
     },
     {
       day: 5,
-      title: "Report Submission & Follow-up",
+      title: "Real-World Application & Career Planning",
       topics: [
-        "Final report preparation and review",
-        "Submitting reports through platform guidelines",
-        "Monitoring report status and triager communications",
-        "Handling rejections and learning from feedback",
-        "Building a positive reputation with security teams"
+        "First bug bounty attempts and methodology",
+        "Building a professional security portfolio",
+        "Networking in the cybersecurity community",
+        "Career path planning and skill development",
+        "Creating a personal brand in security"
       ]
     },
     {
@@ -160,6 +164,22 @@ const Week4 = () => {
                       </li>
                     ))}
                   </ul>
+                  {dayData.day === 1 && (
+                    <div className="mt-6">
+                        <InteractiveVulnerabilityDemos />
+                    </div>
+                  )}
+                  {dayData.day === 3 && (
+                    <div className="mt-6">
+                        <BugBountyReportAnalyzer />
+                    </div>
+                  )}
+                  {dayData.day === 5 && (
+                    <div className="mt-6 grid md:grid-cols-2 gap-8">
+                        <CareerPathBuilder />
+                        <ResumeCvKeywords />
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -6,6 +6,9 @@ import { useProgress } from '../contexts/ProgressContext';
 import WeekProgress from '../components/WeekProgress';
 import withLoading from '../components/withLoading';
 import WeekPageSkeleton from '../components/WeekPageSkeleton';
+import InteractiveCodeSnippet from '../components/InteractiveCodeSnippet';
+import ResourceHub from '../components/ResourceHub';
+import SetupWizard from '../components/SetupWizard';
 
 const Week1 = () => {
   const { progress, toggleDayComplete } = useProgress();
@@ -33,7 +36,40 @@ const Week1 = () => {
         "HTTP status codes (200, 301, 404, 500)",
         "HTML & JavaScript fundamentals",
         "Basic DOM manipulation concepts"
-      ]
+      ],
+      interactiveComponent: (
+        <InteractiveCodeSnippet
+          title="HTML & DOM Manipulation Example"
+          initialCode={`'''<h1 id="welcome">Hello, World!</h1>\n<button onclick="changeText()">Click Me</button>\n<script>\n  function changeText() {\n    document.getElementById('welcome').innerText = 'You clicked the button!';\n  }\n</script>'''`}
+        />
+      ),
+      resources: {
+        articles: [
+          { 
+            title: "MDN Web Docs: HTTP", 
+            description: "A comprehensive guide to the Hypertext Transfer Protocol.",
+            url: "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+            source: "Mozilla Developer Network",
+            type: "documentation"
+          },
+          { 
+            title: "A Beginner’s Guide to HTML & CSS", 
+            description: "A friendly and visual introduction to the basics of web development.",
+            url: "https://learn.shayhowe.com/html-css/",
+            source: "Shay Howe",
+            type: "article"
+          }
+        ],
+        videos: [
+          { 
+            title: "HTTP Crash Course & Exploration", 
+            description: "A 25-minute video covering the essentials of the HTTP protocol.",
+            url: "https://www.youtube.com/watch?v=iG2BvXLobA",
+            source: "Traversy Media",
+            type: "video"
+          }
+        ]
+      }
     },
     {
       day: 2,
@@ -42,9 +78,35 @@ const Week1 = () => {
         "SQL fundamentals and relational databases",
         "Basic queries: SELECT, INSERT, UPDATE, DELETE",
         "Database structure: tables, rows, columns, keys",
-        "Web architecture: frontend, backend, database interactions",
-        "Resources: SQLBolt, W3Schools SQL Tutorial"
-      ]
+        "Web architecture: frontend, backend, database interactions"
+      ],
+      interactiveComponent: (
+        <InteractiveCodeSnippet
+          title="SQL Sandbox"
+          initialCode={`'''-- Try running a query, for example:\nSELECT * FROM users;'''`}
+          language="sql"
+        />
+      ),
+      resources: {
+        articles: [
+          {
+            title: "SQLBolt - Learn SQL with simple, interactive exercises.",
+            description: "The best way to learn SQL is to practice. SQLBolt provides interactive lessons to get you started.",
+            url: "https://sqlbolt.com/",
+            source: "SQLBolt",
+            type: "documentation"
+          }
+        ],
+        videos: [
+          {
+            title: "SQL Tutorial - Full Database Course for Beginners",
+            description: "A comprehensive 4-hour SQL course that covers everything from the basics to advanced topics.",
+            url: "https://www.youtube.com/watch?v=HXV3zeQKqGY",
+            source: "freeCodeCamp.org",
+            type: "video"
+          }
+        ]
+      }
     },
     {
       day: 3,
@@ -75,9 +137,32 @@ const Week1 = () => {
         "A08: Software and Data Integrity Failures",
         "A09: Security Logging and Monitoring Failures",
         "A10: Server-Side Request Forgery (SSRF)",
-        "Download and install Burp Suite Community Edition",
-        "Install OWASP Juice Shop, complete first challenges"
-      ]
+        "Get ready to practice! Follow the wizard to set up your lab environment."
+      ],
+      interactiveComponent: (
+        <SetupWizard
+          steps={[
+            { 
+              title: 'Install Burp Suite', 
+              description: 'Download and install the latest version of Burp Suite Community Edition. This is an essential tool for web application testing.',
+              link: 'https://portswigger.net/burp/communitydownload'
+            },
+            { 
+              title: 'Install OWASP Juice Shop', 
+              description: 'We will use Docker to run OWASP Juice Shop, a deliberately insecure web application for practice.',
+              link: 'https://hub.docker.com/r/bkimminich/juice-shop'
+            },
+            { 
+              title: 'Run Juice Shop', 
+              description: 'Open your terminal and run the command: docker run --rm -p 3001:3000 bkimminich/juice-shop'
+            },
+            { 
+              title: 'Access the Lab', 
+              description: 'Open your browser and navigate to http://localhost:3001 to start hacking!'
+            }
+          ]}
+        />
+      )
     },
     {
       day: "6-7",
@@ -188,6 +273,12 @@ const Week1 = () => {
                       </li>
                     ))}
                   </ul>
+
+                  {/* Interactive Component */}
+                  {dayData.interactiveComponent && dayData.interactiveComponent}
+
+                  {/* Resource Hub */}
+                  {dayData.resources && <ResourceHub resources={dayData.resources} />}
                 </div>
               </div>
             </motion.div>

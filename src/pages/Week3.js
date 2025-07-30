@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiHome, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import InteractiveSqlSimulator from '../components/InteractiveSqlSimulator';
+import PayloadBuilder from '../components/PayloadBuilder';
+import VisualDatabaseExplorer from '../components/VisualDatabaseExplorer';
+import GuessTheQueryGame from '../components/GuessTheQueryGame';
 
 const Week3 = () => {
+  const [activeSqlType, setActiveSqlType] = useState('error');
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -20,68 +26,68 @@ const Week3 = () => {
   const days = [
     {
       day: 1,
-      title: "Burp Suite Mastery",
+      title: "SQL Injection Fundamentals",
       topics: [
-        "Burp Suite Intruder attack types: Sniper, Battering Ram, etc.",
-        "Fuzzing parameters and finding vulnerabilities",
-        "Rate limit testing and brute force attacks",
-        "Comparer for analyzing differences in responses",
-        "Decoder for encoding/decoding data (Base64, URL, HTML)"
+        "Understanding SQL and database structures",
+        "How SQL injection vulnerabilities occur",
+        "Basic SQL injection payloads and techniques",
+        "Identifying injectable parameters",
+        "Manual testing vs automated tools"
       ]
     },
     {
       day: 2,
-      title: "Network Reconnaissance with Nmap",
+      title: "Error-Based SQL Injection",
       topics: [
-        "Nmap scan types: TCP SYN (-sS), TCP connect (-sT), UDP (-sU)",
-        "Version detection (-sV) and default scripts (-sC)",
-        "Nmap Scripting Engine (NSE) for vulnerability detection",
-        "HTTP enumeration with scripts (http-enum, http-methods)",
-        "Scanning vulnerable VMs or Docker containers"
+        "Triggering database errors to extract information",
+        "Common error messages and what they reveal",
+        "MySQL, PostgreSQL, and MSSQL error differences",
+        "Extracting database version and structure",
+        "Bypassing basic error handling"
       ]
     },
     {
       day: 3,
-      title: "Web Directory & File Discovery",
+      title: "Union-Based SQL Injection",
       topics: [
-        "Directory brute forcing with Gobuster, Dirb, ffuf",
-        "Wordlist management with SecLists",
-        "Discovery of backup files (.bak, .old, .backup)",
-        "Finding sensitive files (.env, .git, .svn)",
-        "Practice with common commands"
+        "Understanding UNION SELECT statements",
+        "Finding the correct number of columns",
+        "Data type matching and NULL values",
+        "Extracting data from multiple tables",
+        "Advanced UNION techniques"
       ]
     },
     {
       day: 4,
-      title: "Subdomain Enumeration & DNS Reconnaissance",
+      title: "Blind SQL Injection Techniques",
       topics: [
-        "Subdomain discovery with Sublist3r, Assetfinder, Amass",
-        "DNS enumeration with dig, nslookup, DNSrecon",
-        "Certificate transparency logs (crt.sh)",
-        "Advanced Google dorking for sensitive information",
-        "Combining tools for comprehensive enumeration"
+        "Boolean-based blind SQL injection",
+        "Time-based blind SQL injection",
+        "Character-by-character data extraction",
+        "Automated blind SQLi with custom scripts",
+        "Advanced timing attack techniques"
       ]
     },
     {
       day: 5,
-      title: "Information Gathering & OSINT",
+      title: "Advanced SQL Injection & Tools",
       topics: [
-        "Email harvesting with theHarvester",
-        "Technology stack identification with Wappalyzer, Whatweb",
-        "GitHub reconnaissance for API keys and secrets",
-        "Shodan for finding exposed services and devices",
-        "Organizing reconnaissance data effectively"
+        "SQLMap installation and configuration",
+        "Automated vulnerability scanning",
+        "Custom payload creation",
+        "WAF bypass techniques",
+        "Database-specific injection methods"
       ]
     },
     {
       day: "6-7",
-      title: "Weekend Automation & Integration",
+      title: "SQL Injection Practice & Defense",
       topics: [
-        "Bash scripting for bug bounty automation",
-        "Piping outputs between tools and filtering results",
-        "Automated scanning with Nuclei",
-        "End-to-end reconnaissance practice on a target",
-        "Creating a personal reconnaissance checklist"
+        "Hands-on practice with vulnerable applications",
+        "Real-world SQL injection case studies",
+        "Parameterized queries and prepared statements",
+        "Input validation and sanitization",
+        "Creating comprehensive SQLi test cases"
       ]
     }
   ];
@@ -116,7 +122,7 @@ const Week3 = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-4xl md:text-5xl font-bold mb-4"
         >
-          Week 3: <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Tools & Reconnaissance</span>
+          Week 3: <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">SQL Injection Mastery</span>
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, x: -20 }}
@@ -124,7 +130,7 @@ const Week3 = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-lg text-gray-300 max-w-3xl"
         >
-          Learn the tools of the trade and master the art of reconnaissance to find hidden attack surfaces and vulnerabilities.
+          Master SQL injection techniques from basic error-based attacks to advanced blind injection methods and automated tools.
         </motion.p>
       </motion.div>
 
@@ -160,6 +166,25 @@ const Week3 = () => {
                       </li>
                     ))}
                   </ul>
+                  {dayData.day === 2 && (
+                     <div className="mt-6 space-y-8">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <div className="flex space-x-2 mb-4 border-b border-gray-700">
+                                    <button onClick={() => setActiveSqlType('error')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeSqlType === 'error' ? 'border-b-2 border-teal-500 text-white' : 'text-gray-400 hover:text-white'}`}>Error-Based</button>
+                                    <button onClick={() => setActiveSqlType('union')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeSqlType === 'union' ? 'border-b-2 border-teal-500 text-white' : 'text-gray-400 hover:text-white'}`}>Union-Based</button>
+                                    <button onClick={() => setActiveSqlType('blind')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeSqlType === 'blind' ? 'border-b-2 border-teal-500 text-white' : 'text-gray-400 hover:text-white'}`}>Blind SQLi</button>
+                                </div>
+                                <InteractiveSqlSimulator simulationType={activeSqlType} />
+                            </div>
+                            <VisualDatabaseExplorer />
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <PayloadBuilder />
+                            <GuessTheQueryGame />
+                        </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

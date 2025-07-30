@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { HiHome, HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import LiveXssPlayground from '../components/LiveXssPlayground';
+import XssPayloadLibrary from '../components/XssPayloadLibrary';
+import InteractiveBypassingChallenges from '../components/InteractiveBypassingChallenges';
+import VideoWalkthroughs from '../components/VideoWalkthroughs';
 
 const Week2 = () => {
+  const [activeXss, setActiveXss] = useState('reflected');
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -163,6 +169,23 @@ const Week2 = () => {
                       </li>
                     ))}
                   </ul>
+                  {dayData.day === 2 && (
+                     <div className="mt-6 space-y-8">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <div className="flex space-x-2 mb-4 border-b border-gray-700">
+                                    <button onClick={() => setActiveXss('reflected')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeXss === 'reflected' ? 'border-b-2 border-purple-500 text-white' : 'text-gray-400 hover:text-white'}`}>Reflected</button>
+                                    <button onClick={() => setActiveXss('stored')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeXss === 'stored' ? 'border-b-2 border-purple-500 text-white' : 'text-gray-400 hover:text-white'}`}>Stored</button>
+                                    <button onClick={() => setActiveXss('dom')} className={`px-4 py-2 text-sm font-medium transition-colors ${activeXss === 'dom' ? 'border-b-2 border-purple-500 text-white' : 'text-gray-400 hover:text-white'}`}>DOM-based</button>
+                                </div>
+                                <LiveXssPlayground xssType={activeXss} />
+                            </div>
+                            <XssPayloadLibrary />
+                        </div>
+                        <InteractiveBypassingChallenges />
+                        <VideoWalkthroughs />
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
